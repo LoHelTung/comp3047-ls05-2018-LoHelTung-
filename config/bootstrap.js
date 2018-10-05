@@ -31,8 +31,8 @@ if (await Person.count() > 0) {
 }
 
 await Person.createEach([
-  { "name": "Martin Choy", "age": "23", "id": 635 },
-  { "name": "Kenny Cheng", "age": "22", "id": 637 }
+  { name: "Martin Choy", age: 23 },
+  { name: "Kenny Cheng", age: 22 }
   // etc.
 ]);
 
