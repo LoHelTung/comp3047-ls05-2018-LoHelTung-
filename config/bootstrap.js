@@ -26,6 +26,9 @@ module.exports.bootstrap = async function(done) {
   //   // etc.
   // ]);
   // ```
+  sails.bcrypt = require('bcrypt');
+  const saltRounds = 10;
+
 if (await Person.count() > 0) {
   return done();
 }
@@ -36,11 +39,14 @@ await Person.createEach([
   // etc.
 ]);
 
+const hash = await sails.bcrypt.hash('123456', saltRounds);
+
 await User.createEach([
-  { "username": "admin", "password": "123456" },
-  { "username": "boss", "password": "123456" }
-  // etc.
+    { "username": "admin", "password": hash },
+    { "username": "boss", "password": hash }
+    // etc.
 ]);
+
   // Don't forget to trigger `done()` when this bootstrap function's logic is finished.
   // (otherwise your server will never lift, since it's waiting on the bootstrap)
   return done();
