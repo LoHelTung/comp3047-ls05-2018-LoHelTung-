@@ -40,7 +40,11 @@ module.exports = {
             return res.ok("Login successfully");
     
         });
-    
+        if (req.wantsJSON){
+            return res.redirect('/person/index');
+        } else {
+            return res.ok("Login successfully");
+        }
     },
     populate: async function (req, res) {
 

@@ -8,10 +8,19 @@
 module.exports = {
 
   attributes: {
+
     username: {
-      type: "string"
+      type: 'string',
+      unique: true,
+      required: true
     },
     
+    role: {
+      type: 'string',
+      enum: ['admin', 'tester', 'visitor'],
+      defaultsTo: 'visitor'
+  },
+  
     password: {
       type: "string"
     },
@@ -19,6 +28,9 @@ module.exports = {
       collection: 'Person',
       via: 'worksFor'
     },
+
+
+
   },
   
   customToJSON: function() {
